@@ -720,7 +720,7 @@
       <div class="brand-card">
         <div class="brand-top">
           <div class="brand-logo-container">
-            <img src="./almonard.png" alt="Almonard Logo" onerror="this.parentElement.style.display='none';">
+            <img src="./Almonard.png" alt="Almonard Logo" onerror="this.parentElement.style.display='none';">
           </div>
           <div class="brand-info-wrap">
             <div class="brand-name">ALMONARD</div>
@@ -800,7 +800,7 @@
             <img src="./Eleccomp.png" alt="RPG Raychem Logo" onerror="this.parentElement.style.display='none';">
           </div>
           <div class="brand-info-wrap">
-            <div class="brand-name" style="margin-left: 170px;">ELECTONIC COMPONENTS</div>
+            <div class="brand-name">ELECTONIC<br>COMPONENTS</div>
             <!-- <span class="brand-number">BRAND #06</span> -->
           </div>
         </div>
@@ -826,7 +826,7 @@
             <img src="./gift.png" alt="Gift image" onerror="this.parentElement.style.display='none';">
           </div>
           <div class="brand-info-wrap">
-            <div class="brand-name" style="margin-left: 170px;">CORPORATE ENGAGEMENT & GIFTING</div>
+            <div class="brand-name">CORPORATE<br>ENGAGEMENT & GIFTING</div>
             <!-- <span class="brand-number">BRAND #06</span> -->
           </div>
         </div>
@@ -929,7 +929,7 @@
       <button class="btn btn-primary" onclick="saveContact(0)">
         📥 Save Hari's Contact
       </button>
-      <a class="btn btn-whatsapp" href="https://wa.me/919945933111?text=Hello%20Hari%20Prassad,%20I%20have%20an%20enquiry%20regarding%20Sai%20Components." target="_blank" rel="noopener">
+      <a class="btn btn-whatsapp" href="https://wa.me/919945933111?text=Hi,%20I%20have%20an%20enquiry%20regarding%20Sai%20Components%20products:" target="_blank" rel="noopener">
         💬 WhatsApp Hari
       </a>
       <button class="btn btn-secondary" onclick="shareCard(0)">
@@ -962,7 +962,7 @@
       <button class="btn btn-primary" onclick="saveContact(1)">
         📥 Save Murali's Contact
       </button>
-      <a class="btn btn-whatsapp" href="https://wa.me/919980060647?text=Hello%20Murali%20Krishna,%20I%20have%20an%20enquiry%20regarding%20Sai%20Components." target="_blank" rel="noopener">
+      <a class="btn btn-whatsapp" href="https://wa.me/919980060647?text=Hi,%20I%20have%20an%20enquiry%20regarding%20Sai%20Components%20products:" target="_blank" rel="noopener">
         💬 WhatsApp Murali
       </a>
       <button class="btn btn-secondary" onclick="shareCard(1)">
@@ -1019,18 +1019,17 @@
       </div>
     </div>
 
-    <div class="action-grid">
+    <!-- <div class="action-grid">
       <button class="btn btn-primary" onclick="saveContact(2)">
         📥 Save Office Contact
       </button>
-      <a class="btn btn-whatsapp" href="https://wa.me/918088791291?text=Hello%20Sai%20Components,%20I%20have%20an%20enquiry%20regarding%20Air%20Solutions." target="_blank" rel="noopener">
+      <a class="btn btn-whatsapp" href="https://wa.me/918088791291?text=Hello%20Sai%20Components,%20I%20have%20an%20enquiry" target="_blank" rel="noopener">
         💬 WhatsApp OFFICE
       </a>
       <button class="btn btn-secondary" onclick="shareCard(2)">
         🔗 Share Office Contact Card
       </button>
-    </div>
-
+    </div> -->
   </div>
 
 
@@ -1201,7 +1200,7 @@
   async function shareCard(index) {
     const c = contacts[index];
     // const shareText = "SAI COMPONENTS INDIA PRIVATE LIMITED\n" + c.fullName + " - " + c.title + "\nMobile: " + c.mobile + "\nEmail: " + c.email1 + ", " + c.email2 + "\nLocation 1: " + c.mapLocation1 + "\nLocation 2: " + c.mapLocation2;
-    const shareText = "SAI COMPONENTS INDIA PRIVATE LIMITED\n" + c.note + "\n" + c.fullName + " - " + c.title + "\nMobile: " + c.mobile + "\nEmail: " + c.email1 + ", " + c.email2 + "\nWebsite: ";
+    const shareText = "*SAI COMPONENTS INDIA PRIVATE LIMITED*\n" + c.note + "\n" + "\n" + c.fullName + " - " + c.title + "\nMobile: " + c.mobile + "\nEmail: " + c.email1 + ", " + c.email2 + "\nWebsite: ";
     if (navigator.share) {
       try {
         await navigator.share({
