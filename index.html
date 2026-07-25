@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sai Components India Private Limited Digital INFO Card</title>
-<meta name="description" content="Sai Components India Private Limited – Karnataka's exclusive branch office for Rexnord Fans. Head of Business Development: Hari Prassad. Authorized Distributors for Rexnord, Superflow, Almonard, Astberg, Jainsons, and RPG Raychem.">
+<title>Sai Components India Private Limited Digital Card</title>
+<meta name="description" content="Sai Components India Private Limited – Karnataka's Exclusive Branch Office for Rexnord & Superflow. Authorized Distributors for Almonard, Astberg, Jainsons, RPG Raychem.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -447,6 +447,7 @@
   }
 
   .brand-card {
+    cursor: pointer;
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
     border-radius: 16px;
@@ -459,6 +460,71 @@
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   }
+
+  /* small popup */
+  .brand-popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .brand-popup {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    padding: 24px 22px 20px;
+    width: 280px;
+    max-width: 100%;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  }
+
+  .brand-popup-close {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: rgba(255,255,255,0.08);
+    border: none;
+    color: #fff;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 13px;
+  }
+
+  .brand-popup-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-right: 20px;
+  }
+
+  .brand-popup-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .brand-popup-btn {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-gold);
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 9px;
+    padding: 10px 14px;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .brand-popup-btn:hover { background: rgba(212, 175, 55, 0.2); }
 
   .brand-top {
     display: flex;
@@ -541,6 +607,15 @@
     border-radius: 6px;
     border: 1px solid rgba(255, 255, 255, 0.05);
   }
+
+  /* full viewer (from before) */
+  .catalogue-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 999; flex-direction: column; }
+  .catalogue-modal-bar { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; color: #fff; font-family: 'Outfit', sans-serif; font-size: 14px; background: var(--bg-card); border-bottom: 1px solid var(--border-subtle); gap: 12px; }
+  .catalogue-nav { display: flex; align-items: center; gap: 10px; font-size: 12.5px; }
+  .catalogue-nav button { background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.3); color: var(--accent-gold); border-radius: 6px; padding: 5px 10px; cursor: pointer; font-size: 12px; }
+  .catalogue-close { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; }
+  .catalogue-viewer { flex: 1; overflow-y: auto; display: flex; justify-content: center; padding: 16px; user-select: none; -webkit-user-select: none; }
+  .catalogue-viewer canvas { max-width: 100%; box-shadow: 0 8px 30px rgba(0,0,0,0.5); pointer-events: none; }
 
   /* Company Description Box */
   .about-card {
@@ -646,7 +721,7 @@
   <!-- ================= BRAND BANNER ================= -->
   <div class="brand-banner">
     <div class="company-logo-wrap">
-      <img src="SCPIL LOGO.jpeg" alt="Sai Components Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <img src="./logos/SCPIL LOGO.jpeg" alt="Sai Components Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
       <div class="company-logo-fallback" style="display:none;">SAI<br>COMP</div>
     </div>
     <div class="brand-details">
@@ -679,10 +754,10 @@
 
     <div class="brands-grid">
       <!-- Brand 1: REXNORD -->
-      <div class="brand-card">
+      <div class="brand-card" onclick="openBrandPopup('rexnord')">
         <div class="brand-top">
           <div class="brand-logo-container" style="background-color: #FFFFFF;">
-            <img src="./Rexnord.png" alt="Rexnord Logo" onerror="this.parentElement.style.display='none';">
+            <img src="./logos/Rexnord.png" alt="Rexnord Logo" onerror="this.parentElement.style.display='none';">
           </div>
           <div class="brand-info-wrap">
             <div class="brand-name">REXNORD</div>
@@ -699,10 +774,10 @@
       </div>
 
       <!-- Brand 2: SUPER FLOW -->
-      <div class="brand-card">
+      <div class="brand-card" onclick="openBrandPopup('superflow')">
         <div class="brand-top">
           <div class="brand-logo-container"  style="background-color: #FFFFFF;">
-            <img src="./Super FLow.png" alt="Super Flow Logo" onerror="this.parentElement.style.display='none';">
+            <img src="./logos/Super FLow.png" alt="Super Flow Logo" onerror="this.parentElement.style.display='none';">
           </div>
           <div class="brand-info-wrap">
             <div class="brand-name">SUPER FLOW</div>
@@ -717,10 +792,10 @@
       </div>
 
       <!-- Brand 3: ALMONARD -->
-      <div class="brand-card">
+      <div class="brand-card" onclick="openBrandPopup('almonard')">
         <div class="brand-top">
           <div class="brand-logo-container">
-            <img src="./Almonard.png" alt="Almonard Logo" onerror="this.parentElement.style.display='none';">
+            <img src="./logos/Almonard.png" alt="Almonard Logo" onerror="this.parentElement.style.display='none';">
           </div>
           <div class="brand-info-wrap">
             <div class="brand-name">ALMONARD</div>
@@ -737,10 +812,10 @@
       </div>
 
       <!-- Brand 4: ASTBERG -->
-      <div class="brand-card">
+      <div class="brand-card" onclick="openBrandPopup('astberg')">
         <div class="brand-top">
           <div class="brand-logo-container">
-            <img src="./astberg.png" alt="Astberg Logo" onerror="this.parentElement.style.display='none';">
+            <img src="./logos/astberg.png" alt="Astberg Logo" onerror="this.parentElement.style.display='none';">
           </div>
           <div class="brand-info-wrap">
             <div class="brand-name">ASTBERG</div>
@@ -757,10 +832,10 @@
       </div>
 
       <!-- Brand 5: JAINSONS -->
-      <div class="brand-card">
+      <div class="brand-card" onclick="openBrandPopup('jainsons')">
         <div class="brand-top">
           <div class="brand-logo-container" style="background-color: #FFFFFF;">
-            <img src="./Jainson.png" alt="Jainsons Logo" onerror="this.parentElement.style.display='none';">
+            <img src="./logos/Jainson.png" alt="Jainsons Logo" onerror="this.parentElement.style.display='none';">
           </div>
           <div class="brand-info-wrap">
             <div class="brand-name">JAINSONS</div>
@@ -774,10 +849,10 @@
       </div>
 
       <!-- Brand 6: RPG RAYCHEM -->
-      <div class="brand-card">
+      <div class="brand-card" onclick="openBrandPopup('raychem')">
         <div class="brand-top">
           <div class="brand-logo-container" style="background-color: #FFFFFF;">
-            <img src="./raychem.png" alt="RPG Raychem Logo" onerror="this.parentElement.style.display='none';">
+            <img src="./logos/raychem.png" alt="RPG Raychem Logo" onerror="this.parentElement.style.display='none';">
           </div>
           <div class="brand-info-wrap">
             <div class="brand-name">RPG RAYCHEM</div>
@@ -797,7 +872,7 @@
       <div class="brand-card">
         <div class="brand-top">
           <div class="brand-logo-container" style="height: 60px; background-color: #FFFFFF;">
-            <img src="./Eleccomp.png" alt="RPG Raychem Logo" onerror="this.parentElement.style.display='none';">
+            <img src="./logos/Eleccomp.png" alt="RPG Raychem Logo" onerror="this.parentElement.style.display='none';">
           </div>
           <div class="brand-info-wrap">
             <div class="brand-name">ELECTONIC<br>COMPONENTS</div>
@@ -823,7 +898,7 @@
       <div class="brand-card">
         <div class="brand-top">
           <div class="brand-logo-container" style="height: 70px; background-color: #FFFFFF;">
-            <img src="./gift.png" alt="Gift image" onerror="this.parentElement.style.display='none';">
+            <img src="./logos/gift.png" alt="Gift image" onerror="this.parentElement.style.display='none';">
           </div>
           <div class="brand-info-wrap">
             <div class="brand-name">CORPORATE<br>ENGAGEMENT & GIFTING</div>
@@ -850,6 +925,35 @@
           <span class="product-tag">Customised Gift Hampers</span>
       </div>
     </div>
+
+    <!-- small "which catalogue" popup -->
+
+    <div id="brandPopupOverlay" class="brand-popup-overlay" style="display:none;" onclick="closeBrandPopup(event)">
+      <div class="brand-popup" onclick="event.stopPropagation()">
+        <button class="brand-popup-close" onclick="closeBrandPopup()">✕</button>
+        <div class="brand-popup-title" id="brandPopupTitle">Brand Name</div>
+        <div class="brand-popup-actions" id="brandPopupActions"></div>
+      </div>
+    </div>
+
+    <!-- full catalogue viewer (canvas-based, from earlier — view-only) -->
+    <div id="catalogueModal" class="catalogue-modal" style="display:none;">
+      <div class="catalogue-modal-bar">
+        <span id="catalogueModalTitle">Catalogue</span>
+        <div class="catalogue-nav">
+          <button onclick="prevPage()">‹ Prev</button>
+          <span id="pageIndicator">1 / 1</span>
+          <button onclick="nextPage()">Next ›</button>
+        </div>
+        <button class="catalogue-close" onclick="closeCatalogue()">✕</button>
+      </div>
+      <div id="catalogueViewer" class="catalogue-viewer" oncontextmenu="return false;">
+        <canvas id="catalogueCanvas"></canvas>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
 
     <!-- ================= ABOUT COMPANY SECTION ================= -->
     <div class="section-header">
@@ -1104,6 +1208,94 @@
 <div class="toast" id="toast">Copied to clipboard!</div>
 
 <script>
+
+      pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+    // ============================================================
+    // One entry per brand. "files" can have 1 or 2 catalogues —
+    // the popup automatically shows exactly that many buttons.
+    // ============================================================
+    const catalogueData = {
+      rexnord:   { name: "REXNORD",       files: [ { label: "View Product Catalogue", url: "./catalogues/Rexnord Catalogue Single page.pdf" } ] },
+      superflow: { name: "SUPER FLOW",    files: [ { label: "View Product Catalogue", url: "./catalogues/Super Flow Single Page.pdf" } ] },
+      almonard:  { name: "ALMONARD",      files: [ { label: "View Product Catalogue", url: "./catalogues/Amonard.pdf" } ] },
+      astberg:   { name: "ASTBERG",       files: [ { label: "View Product Catalogue", url: "./catalogues/Astberg.pdf" } ] },
+      jainsons:  { name: "JAINSONS",      files: [ { label: "View Product Catalogue", url: "./catalogues/JAINSON AIR VENT.pdf" } ] },
+      raychem:   { name: "RPG RAYCHEM",   files: [ { label: "View Product Catalogue", url: "./catalogues/raychem-main.pdf" }, { label: "Safety Guide", url: "./catalogues/raychem-safety.pdf" } ] },
+      // eleccomp:  { name: "Electronic Components", files: [ { label: "Product Catalogue", url: "./catalogues/electronic-components.pdf" } ] },
+      // gifting:   { name: "Corporate Gifting", files: [ { label: "Product Catalogue", url: "./catalogues/gifting-main.pdf" }, { label: "Corporate Range", url: "./catalogues/gifting-corporate.pdf" } ] }
+    };
+
+    // ---------- small brand popup ----------
+    function openBrandPopup(brandKey) {
+      const brand = catalogueData[brandKey];
+      if (!brand) return;
+
+      document.getElementById('brandPopupTitle').textContent = brand.name;
+
+      const actions = document.getElementById('brandPopupActions');
+      actions.innerHTML = brand.files.map(f =>
+        `<button class="brand-popup-btn" onclick="closeBrandPopup(); openCatalogue('${f.url}', '${brand.name} — ${f.label}')">📄 ${f.label}</button>`
+      ).join('');
+
+      document.getElementById('brandPopupOverlay').style.display = 'flex';
+    }
+
+    function closeBrandPopup(e) {
+      document.getElementById('brandPopupOverlay').style.display = 'none';
+    }
+
+    // ---------- full-screen view-only PDF viewer ----------
+    let currentPdf = null, currentPage = 1, totalPages = 1;
+
+    async function openCatalogue(fileUrl, title) {
+      document.getElementById('catalogueModalTitle').textContent = title;
+      document.getElementById('catalogueModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+
+      currentPdf = await pdfjsLib.getDocument(fileUrl).promise;
+      totalPages = currentPdf.numPages;
+      currentPage = 1;
+      renderPage(currentPage);
+    }
+
+    async function renderPage(num) {
+      const page = await currentPdf.getPage(num);
+      const canvas = document.getElementById('catalogueCanvas');
+      const ctx = canvas.getContext('2d');
+      const containerWidth = document.getElementById('catalogueViewer').clientWidth - 32;
+      const unscaled = page.getViewport({ scale: 1 });
+      const scale = Math.min(containerWidth / unscaled.width, 1.8);
+      const viewport = page.getViewport({ scale });
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      await page.render({ canvasContext: ctx, viewport }).promise;
+      document.getElementById('pageIndicator').textContent = num + ' / ' + totalPages;
+    }
+
+    function nextPage() { if (currentPage < totalPages) { currentPage++; renderPage(currentPage); } }
+    function prevPage() { if (currentPage > 1) { currentPage--; renderPage(currentPage); } }
+
+    function closeCatalogue() {
+      document.getElementById('catalogueModal').style.display = 'none';
+      document.body.style.overflow = '';
+      currentPdf = null;
+    }
+
+    document.addEventListener('keydown', e => {
+      if (document.getElementById('catalogueModal').style.display === 'flex') {
+        if (e.key === 'Escape') closeCatalogue();
+        if (e.key === 'ArrowRight') nextPage();
+        if (e.key === 'ArrowLeft') prevPage();
+      } else if (document.getElementById('brandPopupOverlay').style.display === 'flex') {
+        if (e.key === 'Escape') closeBrandPopup();
+      }
+    });
+
+    document.addEventListener('dragstart', e => {
+      if (e.target.tagName === 'CANVAS') e.preventDefault();
+    });
+
   // Hari Prassad Contact Dataset
   const contacts = [
     {
