@@ -1259,16 +1259,40 @@
       renderPage(currentPage);
     }
 
+    // async function renderPage(num) {
+    //   const page = await currentPdf.getPage(num);
+    //   const canvas = document.getElementById('catalogueCanvas');
+    //   const ctx = canvas.getContext('2d');
+    //   const containerWidth = document.getElementById('catalogueViewer').clientWidth - 32;
+    //   const unscaled = page.getViewport({ scale: 1 });
+    //   const scale = Math.min(containerWidth / unscaled.width, 1.8);
+    //   const viewport = page.getViewport({ scale });
+    //   canvas.width = viewport.width;
+    //   canvas.height = viewport.height;
+    //   await page.render({ canvasContext: ctx, viewport }).promise;
+    //   document.getElementById('pageIndicator').textContent = num + ' / ' + totalPages;
+    // }
+
     async function renderPage(num) {
       const page = await currentPdf.getPage(num);
       const canvas = document.getElementById('catalogueCanvas');
       const ctx = canvas.getContext('2d');
+
       const containerWidth = document.getElementById('catalogueViewer').clientWidth - 32;
       const unscaled = page.getViewport({ scale: 1 });
-      const scale = Math.min(containerWidth / unscaled.width, 1.8);
-      const viewport = page.getViewport({ scale });
-      canvas.width = viewport.width;
-      canvas.height = viewport.height;
+      const displayScale = Math.min(containerWidth / unscaled.width, 1.8);
+      const viewport = page.getViewport({ scale: displayScale });
+
+      // Key fix: render at device pixel ratio, display at CSS size
+      const dpr = window.devicePixelRatio || 1;
+
+      canvas.width = viewport.width * dpr;
+      canvas.height = viewport.height * dpr;
+      canvas.style.width = viewport.width + "px";
+      canvas.style.height = viewport.height + "px";
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); // scale drawing context to match
+
       await page.render({ canvasContext: ctx, viewport }).promise;
       document.getElementById('pageIndicator').textContent = num + ' / ' + totalPages;
     }
