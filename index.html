@@ -317,7 +317,7 @@
 
   .section-subtitle {
     font-size: 12.5px;
-    color: var(--text-muted);
+    color: var(--color-primary);
     margin-top: 2px;
   }
 
@@ -602,30 +602,67 @@
   .product-tag {
     font-size: 11.5px;
     background: var(--bg-card-alt);
-    color: var(--text-secondary);
+    color: var(--color-primary);
     padding: 4px 10px;
     border-radius: 6px;
     border: 1px solid rgba(255, 255, 255, 0.05);
   }
 
   /* full viewer (from before) */
-  .catalogue-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 999; flex-direction: column; }
-  .catalogue-modal-bar { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; color: #fff; font-family: 'Outfit', sans-serif; font-size: 14px; background: var(--bg-card); border-bottom: 1px solid var(--border-subtle); gap: 12px; }
-  .catalogue-nav { display: flex; align-items: center; gap: 10px; font-size: 12.5px; }
-  .catalogue-nav button { background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.3); color: var(--accent-gold); border-radius: 6px; padding: 5px 10px; cursor: pointer; font-size: 12px; }
-  .catalogue-close { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; }
-  .catalogue-viewer { flex: 1; overflow-y: auto; display: flex; justify-content: center; padding: 16px; user-select: none; -webkit-user-select: none; }
-  .catalogue-viewer canvas { max-width: 100%; box-shadow: 0 8px 30px rgba(0,0,0,0.5); pointer-events: none; }
-
-  .catalogue-loading {
-    color: #fff;
-    font-family: 'Outfit', sans-serif;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    opacity: 0.7;
+  .catalogue-modal { 
+    position: fixed; 
+    inset: 0; 
+    background: rgba(0,0,0,0.92); 
+    z-index: 999; 
+    flex-direction: column; 
+  }
+  .catalogue-modal-bar { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 14px 18px; 
+    color: #fff; 
+    font-family: 'Outfit', sans-serif; 
+    font-size: 14px; 
+    background: var(--bg-card); 
+    border-bottom: 1px solid var(--border-subtle); 
+    gap: 12px; 
+  }
+  .catalogue-nav { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    font-size: 12.5px; 
+  }
+  .catalogue-nav button { 
+    background: rgba(212, 175, 55, 0.12); 
+    border: 1px solid rgba(212, 175, 55, 0.3); 
+    color: var(--accent-gold); 
+    border-radius: 6px; 
+    padding: 5px 10px; 
+    cursor: pointer; 
+    font-size: 12px; 
+  }
+  .catalogue-close { 
+    background: none; 
+    border: none; 
+    color: #fff; 
+    font-size: 18px; 
+    cursor: pointer; 
+  }
+  .catalogue-viewer { 
+    flex: 1; 
+    overflow-y: auto; 
+    display: flex; 
+    justify-content: center; 
+    padding: 16px; 
+    user-select: none; 
+    -webkit-user-select: none; 
+  }
+  .catalogue-viewer canvas { 
+    max-width: 100%; 
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5); 
+    pointer-events: none; 
   }
 
   /* Company Description Box */
@@ -760,6 +797,9 @@
       </div>
       <div class="section-subtitle">
         Complete Air &amp; Safety Solutions for Industrial, Commercial &amp; Domestic Needs
+      </div>
+      <div class="section-subtitle" style="font-size: 12px; color: var(--accent-gold); margin-top: 2px; text-align: right;">
+        * Click on the brand to view product catalogue
       </div>
     </div>
 
@@ -1227,12 +1267,12 @@
     // the popup automatically shows exactly that many buttons.
     // ============================================================
     const catalogueData = {
-      rexnord:   { name: "REXNORD",       files: [ { label: "View Product Catalogue", url: "./catalogues/Rexnord Catalogue Single page.pdf" } ] },
+      rexnord:   { name: "REXNORD",       files: [ { label: "View Product Catalogue", url: "./catalogues/Rexnord Single page.pdf" } ] },
       superflow: { name: "SUPER FLOW",    files: [ { label: "View Product Catalogue", url: "./catalogues/Super Flow Single Page.pdf" } ] },
       almonard:  { name: "ALMONARD",      files: [ { label: "View Product Catalogue", url: "./catalogues/Amonard.pdf" } ] },
       astberg:   { name: "ASTBERG",       files: [ { label: "View Product Catalogue", url: "./catalogues/Astberg.pdf" } ] },
       jainsons:  { name: "JAINSONS",      files: [ { label: "View Product Catalogue", url: "./catalogues/JAINSON AIR VENT.pdf" } ] },
-      raychem:   { name: "RPG RAYCHEM",   files: [ { label: "View Product Catalogue", url: "./catalogues/raychem-main.pdf" }, { label: "Safety Guide", url: "./catalogues/raychem-safety.pdf" } ] },
+      raychem:   { name: "RPG RAYCHEM",   files: [ { label: "View Product Catalogue", url: "./catalogues/RPG Raychem.pdf" } ] },
       // eleccomp:  { name: "Electronic Components", files: [ { label: "Product Catalogue", url: "./catalogues/electronic-components.pdf" } ] },
       // gifting:   { name: "Corporate Gifting", files: [ { label: "Product Catalogue", url: "./catalogues/gifting-main.pdf" }, { label: "Corporate Range", url: "./catalogues/gifting-corporate.pdf" } ] }
     };
@@ -1263,51 +1303,23 @@
       document.getElementById('catalogueModalTitle').textContent = title;
       document.getElementById('catalogueModal').style.display = 'flex';
       document.body.style.overflow = 'hidden';
-      document.getElementById('catalogueViewer').innerHTML = '<div class="catalogue-loading">Loading catalogue…</div>';
 
       currentPdf = await pdfjsLib.getDocument(fileUrl).promise;
       totalPages = currentPdf.numPages;
       currentPage = 1;
-
-      document.getElementById('catalogueViewer').innerHTML = '<canvas id="catalogueCanvas"></canvas>';
-
       renderPage(currentPage);
     }
-
-    // async function renderPage(num) {
-    //   const page = await currentPdf.getPage(num);
-    //   const canvas = document.getElementById('catalogueCanvas');
-    //   const ctx = canvas.getContext('2d');
-    //   const containerWidth = document.getElementById('catalogueViewer').clientWidth - 32;
-    //   const unscaled = page.getViewport({ scale: 1 });
-    //   const scale = Math.min(containerWidth / unscaled.width, 1.8);
-    //   const viewport = page.getViewport({ scale });
-    //   canvas.width = viewport.width;
-    //   canvas.height = viewport.height;
-    //   await page.render({ canvasContext: ctx, viewport }).promise;
-    //   document.getElementById('pageIndicator').textContent = num + ' / ' + totalPages;
-    // }
 
     async function renderPage(num) {
       const page = await currentPdf.getPage(num);
       const canvas = document.getElementById('catalogueCanvas');
       const ctx = canvas.getContext('2d');
-
       const containerWidth = document.getElementById('catalogueViewer').clientWidth - 32;
       const unscaled = page.getViewport({ scale: 1 });
-      const displayScale = Math.min(containerWidth / unscaled.width, 1.8);
-      const viewport = page.getViewport({ scale: displayScale });
-
-      // Key fix: render at device pixel ratio, display at CSS size
-      const dpr = window.devicePixelRatio || 1;
-
-      canvas.width = viewport.width * dpr;
-      canvas.height = viewport.height * dpr;
-      canvas.style.width = viewport.width + "px";
-      canvas.style.height = viewport.height + "px";
-
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); // scale drawing context to match
-
+      const scale = Math.min(containerWidth / unscaled.width, 1.8);
+      const viewport = page.getViewport({ scale });
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
       await page.render({ canvasContext: ctx, viewport }).promise;
       document.getElementById('pageIndicator').textContent = num + ' / ' + totalPages;
     }
