@@ -692,7 +692,13 @@ body {
   font-size: 12.5px;
   /* order: 3;
     flex: 1 1 auto; */
-  order: unset;
+  /* order: unset; */
+}
+.page-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
 }
 .catalogue-nav button {
   background: rgba(212, 175, 55, 0.12);
@@ -712,6 +718,26 @@ body {
   font-size: 12px;
   min-width: 100px;
   /* flex-shrink: 0; */
+}
+.catalogue-zoom {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.catalogue-zoom button {
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--accent-gold);
+  border-radius: 6px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.catalogue-zoom button:hover,
+.catalogue-nav button:hover {
+  background: rgba(212, 175, 55, 0.22);
 }
 .catalogue-close {
   position: absolute;
@@ -745,10 +771,26 @@ body {
     width: auto;
   }
 }
+@media (max-width: 639px) {
+
+  .catalogue-nav {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  .page-navigation {
+    width: 100%;
+    justify-content: center;
+  }
+  .catalogue-zoom {
+    width: 100%;
+    justify-content: center;
+  }
+}
 .catalogue-viewer {
   flex: 1; /* takes remaining height after the bar */
   min-height: 0; /* important: lets flex children shrink properly */
-  overflow-y: auto;
+  overflow: auto;
   /* overflow-x: hidden; */
   display: flex;
   align-items: flex-start;
@@ -756,6 +798,7 @@ body {
   padding: 16px;
   user-select: none;
   -webkit-user-select: none;
+  touch-action: pan-x pan-y;
 }
 .catalogue-viewer canvas {
   display: block;

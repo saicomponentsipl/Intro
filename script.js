@@ -48,12 +48,15 @@ function closeBrandPopup(e) {
 }
 
 // ---------- full-screen view-only PDF viewer ----------
-let currentPdf = null, currentPage = 1, totalPages = 1;
+let currentPdf = null, currentPage = 1, totalPages = 1, pdfZoom = 1;
 
 async function openCatalogue(fileUrl, brandName, labelName) {
     document.getElementById('catalogueBrandName').textContent = brandName;
     document.getElementById('catalogueLabelName').textContent = labelName;
     
+    // Reset zoom when opening a new catalogue
+    pdfZoom = 1;
+
     document.getElementById('catalogueModal').style.display = 'flex';
     document.body.style.overflow = 'hidden';
     document.getElementById('pageIndicator').textContent = '– / –';
@@ -93,7 +96,10 @@ async function renderPage(num) {
 
         const widthScale = containerWidth / unscaled.width;
         const heightScale = containerHeight / unscaled.height;
-        const displayScale = Math.min(Math.max(Math.min(widthScale, heightScale), 0.3), 2.2);
+        const fitScale = Math.min(Math.max(Math.min(widthScale, heightScale), 0.3), 2.2);
+        
+        // Apply user zoom
+        const displayScale = fitScale * pdfZoom;
 
         const dpr = window.devicePixelRatio || 1;
         const MIN_RENDER_SCALE = 2.5;
@@ -128,6 +134,26 @@ async function renderPage(num) {
 
 function nextPage() { if (currentPage < totalPages) { currentPage++; renderPage(currentPage); } }
 function prevPage() { if (currentPage > 1) { currentPage--; renderPage(currentPage); } }
+
+function zoomIn() {
+    if (!currentPdf) return;
+    pdfZoom += 0.25;
+    // Maximum zoom = 4x
+    if (pdfZoom > 4) {
+        pdfZoom = 4;
+    }
+    renderPage(currentPage);
+}
+
+function zoomOut() {
+    if (!currentPdf) return;
+    pdfZoom -= 0.25;
+    // Minimum zoom = 0.5x
+    if (pdfZoom < 0.5) {
+        pdfZoom = 0.5;
+    }
+    renderPage(currentPage);
+}
 
 function closeCatalogue() {
     document.getElementById('catalogueModal').style.display = 'none';

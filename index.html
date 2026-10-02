@@ -251,9 +251,15 @@
             <span id="catalogueLabelName">Catalogue Label</span>
           </div>
           <div class="catalogue-nav">
-            <button onclick="prevPage()">‹ Prev</button>
-            <span id="pageIndicator">1 / 1</span>
-            <button onclick="nextPage()">Next ›</button>
+            <div class="page-navigation">
+                <button onclick="prevPage()">‹ Prev</button>
+                <span id="pageIndicator">1 / 1</span>
+                <button onclick="nextPage()">Next ›</button>
+            </div>      
+            <div class="catalogue-zoom">
+                <button onclick="zoomOut()">− Zoom Out</button>
+                <button onclick="zoomIn()">+ Zoom In</button>
+            </div>
           </div>
           <button class="catalogue-close" onclick="closeCatalogue()">✕</button>
         </div>
