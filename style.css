@@ -771,6 +771,13 @@ body {
 .catalogue-nav button:hover {
   background: rgba(212, 175, 55, 0.22);
 }
+#zoomIndicator {
+    min-width: 48px;
+    text-align: center;
+    color: var(--accent-white);
+    font-size: 12px;
+    font-weight: 600;
+}
 .catalogue-close {
   position: absolute;
   top: 10px;

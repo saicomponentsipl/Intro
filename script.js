@@ -135,6 +135,13 @@ async function renderPage(num) {
 function nextPage() { if (currentPage < totalPages) { currentPage++; renderPage(currentPage); } }
 function prevPage() { if (currentPage > 1) { currentPage--; renderPage(currentPage); } }
 
+function updateZoomIndicator() {
+    const indicator = document.getElementById("zoomIndicator");
+    if (indicator) {
+        indicator.textContent = `${Math.round(pdfZoom * 100)}%`;
+    }
+}
+
 function zoomIn() {
     if (!currentPdf) return;
     pdfZoom += 0.25;
@@ -142,6 +149,7 @@ function zoomIn() {
     if (pdfZoom > 4) {
         pdfZoom = 4;
     }
+    updateZoomIndicator();
     renderPage(currentPage);
 }
 
@@ -152,6 +160,7 @@ function zoomOut() {
     if (pdfZoom < 0.5) {
         pdfZoom = 0.5;
     }
+    updateZoomIndicator();
     renderPage(currentPage);
 }
 
