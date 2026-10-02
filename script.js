@@ -6,12 +6,12 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs
 // the popup automatically shows exactly that many buttons.
 // ============================================================
 const catalogueData = {
-    rexnord: { name: "REXNORD", files: [{ label: "View Product Catalogue", url: "./catalogues/Rexnord Single page.pdf" }] },
-    superflow: { name: "SUPER FLOW", files: [{ label: "View Product Catalogue", url: "./catalogues/Super Flow Single Page.pdf" }] },
-    almonard: { name: "ALMONARD", files: [{ label: "View Product Catalogue", url: "./catalogues/Amonard.pdf" }] },
-    astberg: { name: "ASTBERG", files: [{ label: "View Product Catalogue", url: "./catalogues/Astberg.pdf" }] },
-    jainsons: { name: "JAINSONS", files: [{ label: "View Product Catalogue", url: "./catalogues/JAINSON AIR VENT.pdf" }] },
-    raychem: { name: "RPG RAYCHEM", files: [{ label: "View Product Catalogue", url: "./catalogues/RPG Raychem.pdf" }] },
+    rexnord: { name: "REXNORD", files: [{ label: "Single Pager", url: "./catalogues/Rexnord Single page.pdf" },{ label: "Industrial Catelogue", url: "./catalogues/Rexnord Industrial.pdf" },{ label: "Domestic Catelogue", url: "./catalogues/Rexnord Domestic.pdf" }] },
+    superflow: { name: "SUPER FLOW", files: [{ label: "Single Pager", url: "./catalogues/Super Flow Single Page.pdf" }, { label: "Industrial Catelogue", url: "./catalogues/super flow detailed.pdf" }] },
+    almonard: { name: "ALMONARD", files: [{ label: "All Products Catalogue", url: "./catalogues/Amonard.pdf" }] },
+    astberg: { name: "ASTBERG", files: [{ label: "All Products Catalogue", url: "./catalogues/Astberg.pdf" }] },
+    jainsons: { name: "JAINSONS", files: [{ label: "Air Vents & Finger Gaurds", url: "./catalogues/JAINSON AIR VENT.pdf" }, { label: "Lugs", url: "./catalogues/JAINSON Lugs.pdf" }] },
+    raychem: { name: "RPG RAYCHEM", files: [{ label: "All Products Catalogue", url: "./catalogues/RPG Raychem.pdf" }] },
     // eleccomp:  { name: "Electronic Components", files: [ { label: "Product Catalogue", url: "./catalogues/electronic-components.pdf" } ] },
     // gifting:   { name: "Corporate Gifting", files: [ { label: "Product Catalogue", url: "./catalogues/gifting-main.pdf" }, { label: "Corporate Range", url: "./catalogues/gifting-corporate.pdf" } ] }
 };
@@ -25,8 +25,20 @@ function openBrandPopup(brandKey) {
 
     const actions = document.getElementById('brandPopupActions');
     actions.innerHTML = brand.files.map(f =>
-        `<button class="brand-popup-btn" onclick="closeBrandPopup(); openCatalogue('${f.url}', '${brand.name}')">📄 ${f.label}</button>`
+        `<button class="brand-popup-btn" onclick="closeBrandPopup(); openCatalogue('${f.url}', '${brand.name}', '${f.label}')">📄 ${f.label}</button>`
     ).join('');
+
+    // actions.innerHTML = '';
+    // brand.files.forEach(f => {
+    //     const button = document.createElement('button');
+    //     button.className = 'brand-popup-btn';
+    //     button.textContent = `📄 ${f.label}`;
+    //     button.addEventListener('click', () => {
+    //         closeBrandPopup();
+    //         openCatalogue(f.url, brand.name, f.label);
+    //     });
+    //     actions.appendChild(button);
+    // });
 
     document.getElementById('brandPopupOverlay').style.display = 'flex';
 }
@@ -38,9 +50,10 @@ function closeBrandPopup(e) {
 // ---------- full-screen view-only PDF viewer ----------
 let currentPdf = null, currentPage = 1, totalPages = 1;
 
-async function openCatalogue(fileUrl, brandName) {
+async function openCatalogue(fileUrl, brandName, labelName) {
     document.getElementById('catalogueBrandName').textContent = brandName;
-    // document.getElementById('catalogueLabelName').textContent = labelName;
+    document.getElementById('catalogueLabelName').textContent = labelName;
+    
     document.getElementById('catalogueModal').style.display = 'flex';
     document.body.style.overflow = 'hidden';
     document.getElementById('pageIndicator').textContent = '– / –';

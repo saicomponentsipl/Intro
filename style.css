@@ -652,10 +652,17 @@ body {
   grid-area: title;
   /* flex: 1 1 100%;
     order: 1;
-    display: flex;
     flex-direction: column;
     line-height: 1.3; */
+  display: flex;
   overflow: hidden;
+  align-items: center;
+  gap: 8px;
+}
+
+.catalogue-divider {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 14px;
 }
 
 #catalogueBrandName {
@@ -668,7 +675,7 @@ body {
 }
 
 #catalogueLabelName {
-  font-size: 11.5px;
+  font-size: 13.5px;
   color: var(--accent-gold);
   font-weight: 500;
   white-space: nowrap;
