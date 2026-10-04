@@ -839,6 +839,12 @@ body {
   -webkit-user-select: none;
   touch-action: pan-x pan-y;
 }
+/* Tablet, laptop, desktop */
+@media (min-width: 768px) {
+  .catalogue-viewer {
+    justify-content: center;
+  }
+}
 .catalogue-viewer canvas {
   display: block;
   /* max-width: 100%;
